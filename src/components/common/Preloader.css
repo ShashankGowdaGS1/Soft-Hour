@@ -1,0 +1,315 @@
+/* ==========================================================================
+   SOFT HOUR Luxury Editorial Preloader Curtain
+   The 11:00 AM Atelier Opening & Counter Preparation
+   ========================================================================== */
+
+.atelier-preloader-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
+  pointer-events: all;
+  user-select: none;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+.atelier-preloader-root.is-complete {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Two Architectural Sliding Shutters (Top & Bottom Curtain) */
+.preloader-shutter {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%;
+  background-color: #18110F; /* Deepest roasted black cacao */
+  z-index: 1;
+  will-change: transform;
+}
+
+.preloader-shutter-top {
+  top: 0;
+  transform-origin: top center;
+  border-bottom: 1px solid rgba(242, 239, 232, 0.08);
+}
+
+.preloader-shutter-bottom {
+  bottom: 0;
+  transform-origin: bottom center;
+  border-top: 1px solid rgba(242, 239, 232, 0.08);
+}
+
+/* Central Stage Container floating above the shutters */
+.preloader-stage {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  max-width: var(--site-max-width, 1440px);
+  margin: 0 auto;
+  padding: 3.5rem var(--gutter-desktop, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Top Meta Row */
+.preloader-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.preloader-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.preloader-meta-tag {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.55);
+}
+
+.preloader-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-saffron, #C98324);
+  box-shadow: 0 0 10px rgba(201, 131, 36, 0.8);
+  animation: preloaderPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes preloaderPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+}
+
+.preloader-meta-right {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.45);
+}
+
+/* Center Editorial Typographic Composition */
+.preloader-centerpiece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto 0;
+  width: 100%;
+}
+
+.preloader-wordmark-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+}
+
+.preloader-wordmark {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9.5vw, 8rem);
+  font-weight: 400;
+  color: var(--color-milk, #FAF8F3);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  transform: translateY(115%);
+  will-change: transform;
+}
+
+.preloader-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.8vw, 2.25rem);
+  font-style: italic;
+  color: #D47285; /* Signature black cherry tint */
+  margin-top: 0.75rem;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(12px);
+  will-change: transform, opacity;
+}
+
+/* Architectural Hairline Progress Track */
+.preloader-progress-container {
+  width: 100%;
+  max-width: 580px;
+  margin-top: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.preloader-track {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(242, 239, 232, 0.14);
+  position: relative;
+  overflow: hidden;
+}
+
+.preloader-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(201, 131, 36, 0.5) 0%, #FAF8F3 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.preloader-skip-hint {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.32);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.preloader-skip-hint:hover {
+  color: rgba(242, 239, 232, 0.85);
+}
+
+/* Bottom Progress & Discipline Row */
+.preloader-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.preloader-ticker-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+}
+
+.preloader-ticker-phase {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-saffron, #C98324);
+}
+
+.preloader-ticker-action {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.88);
+  min-height: 1.25em;
+  transition: opacity 0.2s ease;
+}
+
+.preloader-counter-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+}
+
+.preloader-counter-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 0.85;
+  color: var(--color-milk, #FAF8F3);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.preloader-counter-unit {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(242, 239, 232, 0.45);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .preloader-stage {
+    padding: 2.25rem 1.75rem;
+  }
+
+  .preloader-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .preloader-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .preloader-progress-container {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader-stage {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .preloader-wordmark {
+    font-size: clamp(2.75rem, 13vw, 3.75rem);
+  }
+
+  .preloader-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .preloader-counter-num {
+    font-size: 2.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atelier-preloader-root {
+    display: none !important;
+  }
+}

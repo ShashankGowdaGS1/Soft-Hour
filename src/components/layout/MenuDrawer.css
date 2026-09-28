@@ -1,0 +1,462 @@
+/* Counter Menu Drawer Overlay & Positioning */
+.counter-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s linear 600ms;
+}
+
+.counter-drawer-overlay.is-active {
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Subtle Translucent Backdrop */
+.counter-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(33, 23, 20, 0.52);
+  opacity: 0;
+  transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.counter-drawer-overlay.is-active .counter-drawer-backdrop {
+  opacity: 1;
+}
+
+/* Slide-out Menu Panel */
+.counter-drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(440px, 44vw, 740px);
+  height: 100dvh;
+  background-color: var(--color-milk);
+  color: var(--color-cacao);
+  border-left: 1px solid var(--border-strong);
+  box-shadow: -16px 0 48px rgba(33, 23, 20, 0.16);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  outline: none;
+  z-index: 1001;
+}
+
+.counter-drawer-overlay.is-active .counter-drawer-panel {
+  transform: translateX(0);
+}
+
+/* Sticky Drawer Header */
+.counter-drawer-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(250, 248, 243, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1.75rem 2.25rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.header-meta-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--cocoa);
+  margin-bottom: 0.35rem;
+}
+
+.drawer-main-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--espresso);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.drawer-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--cocoa);
+  opacity: 0.85;
+}
+
+.header-action-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Desktop Predefined Hover Preview Frame (Docked in Header) */
+.drawer-hover-preview-frame {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 12px rgba(36, 21, 15, 0.08);
+  background-color: var(--whipped);
+  animation: previewFadeIn 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.drawer-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.drawer-preview-tag {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background-color: rgba(36, 21, 15, 0.85);
+  color: var(--whipped);
+  font-family: var(--font-sans);
+  font-size: 0.5rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+/* Restrained Text Close Button */
+.drawer-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cocoa);
+  transition: color var(--transition-fast);
+}
+
+.drawer-close-btn:hover {
+  color: var(--espresso);
+}
+
+.close-symbol {
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: 300;
+}
+
+/* Scrollable Drawer Content */
+.counter-drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 2.25rem 2.25rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Menu Group Header */
+.drawer-menu-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-section-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--border-strong);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.drawer-section-num {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cocoa);
+}
+
+.regular-group .drawer-section-num {
+  color: var(--color-black-cherry);
+}
+
+.drawer-section-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-cacao);
+}
+
+.drawer-section-sub {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cocoa);
+  opacity: 0.75;
+}
+
+.seasonal-accent {
+  color: var(--color-saffron) !important;
+}
+
+/* Printed Patisserie Menu Items List */
+.drawer-items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-menu-item {
+  position: relative;
+  padding: 1.15rem 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color var(--transition-fast);
+}
+
+.drawer-menu-item:hover {
+  background-color: rgba(33, 23, 20, 0.03);
+}
+
+.drawer-menu-item.regular-item:hover .item-name {
+  color: var(--color-black-cherry);
+}
+
+.drawer-menu-item.seasonal-item:hover .item-name {
+  color: var(--color-saffron);
+}
+
+.item-primary-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.item-number {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--cocoa);
+  min-width: 22px;
+}
+
+.seasonal-num {
+  color: var(--color-saffron);
+}
+
+.item-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-cacao);
+  line-height: 1.15;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.seasonal-name {
+  color: var(--color-cacao);
+}
+
+.item-dotted-leader {
+  flex: 1;
+  height: 1px;
+  background-image: radial-gradient(circle, var(--border-strong) 1px, transparent 1px);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  margin: 0 0.5rem;
+  opacity: 0.45;
+}
+
+.seasonal-leader {
+  background-image: radial-gradient(circle, rgba(201, 131, 36, 0.45) 1px, transparent 1px);
+}
+
+.item-price {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-cacao);
+  white-space: nowrap;
+}
+
+.seasonal-price {
+  color: #7D490B;
+}
+
+.item-flavor-notes {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: rgba(33, 23, 20, 0.72);
+  padding-left: calc(22px + 0.75rem);
+}
+
+.seasonal-notes {
+  color: rgba(94, 58, 18, 0.8);
+}
+
+/* Drawer Editorial Footer */
+.counter-drawer-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.drawer-footer-poetics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer-lead-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--color-black-cherry);
+}
+
+.footer-sub-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: rgba(33, 23, 20, 0.65);
+}
+
+.drawer-order-action-btn {
+  background-color: var(--color-cacao);
+  color: var(--color-milk);
+  padding: 0.9rem 1.5rem;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  width: 100%;
+}
+
+.drawer-order-action-btn:hover {
+  background-color: var(--color-black-cherry);
+  transform: translateY(-1px);
+}
+
+/* Touch and Responsive */
+@media (hover: none) {
+  .drawer-hover-preview-frame {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .counter-drawer-panel {
+    width: 100vw;
+    border-left: none;
+  }
+
+  .counter-drawer-header {
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+
+  .counter-drawer-content {
+    padding: 1.75rem 1.5rem 3rem;
+    gap: 2.75rem;
+  }
+
+  .drawer-main-title {
+    font-size: 2rem;
+  }
+
+  .drawer-hover-preview-frame {
+    display: none;
+  }
+
+  .item-primary-line {
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+  }
+
+  .item-name {
+    white-space: normal;
+    font-size: 1.35rem;
+  }
+
+  .item-dotted-leader {
+    display: none;
+  }
+
+  .item-price {
+    margin-left: auto;
+  }
+
+  .item-flavor-notes {
+    padding-left: 0;
+  }
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .counter-drawer-panel {
+    transition: opacity 250ms ease;
+    transform: none !important;
+  }
+  .counter-drawer-overlay:not(.is-active) .counter-drawer-panel {
+    opacity: 0;
+  }
+  .counter-drawer-overlay.is-active .counter-drawer-panel {
+    opacity: 1;
+  }
+  .counter-drawer-backdrop {
+    transition: none;
+  }
+  .drawer-hover-preview-frame {
+    animation: none;
+  }
+}

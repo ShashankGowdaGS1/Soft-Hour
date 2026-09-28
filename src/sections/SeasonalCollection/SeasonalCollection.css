@@ -1,0 +1,574 @@
+/* ==========================================================================
+   Seasonal Collection Section — Ephemeral Harvest Runway
+   Featuring: Ghost Watermark Parallax, Scroll Entrance Cascades & Runway Parallax
+   ========================================================================== */
+
+.seasonal-section {
+  position: relative;
+  padding: 7rem 0 8.5rem;
+  background-color: var(--surface-mango-tint);
+  border-bottom: 1px solid rgba(227, 163, 53, 0.2);
+  overflow: hidden;
+
+  /* Default scroll offset variable */
+  --seasonal-scroll-offset: 0px;
+}
+
+/* Background ghost watermark with continuous, timely scroll parallax */
+.seasonal-watermark {
+  position: absolute;
+  top: 1.25rem;
+  right: -1%;
+  font-family: var(--font-display);
+  font-size: clamp(7.5rem, 20vw, 21rem);
+  font-weight: 400;
+  line-height: 0.8;
+  color: #B57416;
+  opacity: 0.055;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.06em;
+  z-index: 1;
+  transform: translate3d(
+    calc(var(--seasonal-scroll-offset, 0px) * -0.06),
+    calc(var(--seasonal-scroll-offset, 0px) * 0.035),
+    0
+  );
+  transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.4, 1);
+  will-change: transform;
+}
+
+.seasonal-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Header Elements & Scroll Reveals
+   ========================================================================== */
+
+.seasonal-header {
+  margin-bottom: 5rem;
+  border-bottom: 1px solid rgba(201, 131, 36, 0.25);
+  padding-bottom: 2rem;
+}
+
+.seasonal-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: var(--color-milk);
+  border: 1px solid rgba(201, 131, 36, 0.3);
+  border-radius: var(--radius-plate-full);
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.75rem;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.seasonal-section.is-in-view .seasonal-meta-pill {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.05s;
+}
+
+.seasonal-harvest-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-saffron);
+}
+
+.seasonal-harvest-sep {
+  color: var(--biscuit);
+  font-size: 0.75rem;
+}
+
+.seasonal-harvest-title {
+  color: #5E3A12;
+  font-weight: 700;
+}
+
+.seasonal-title-wrap {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: flex-end;
+}
+
+.seasonal-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.92;
+  color: var(--espresso);
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.title-row-1, .title-row-2, .title-row-3 {
+  display: block;
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.seasonal-section.is-in-view .title-row-1 {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.12s;
+}
+
+.seasonal-section.is-in-view .title-row-2 {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.22s;
+}
+
+.seasonal-section.is-in-view .title-row-3 {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.32s;
+}
+
+.title-row-3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.seasonal-leaf {
+  color: var(--color-saffron);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  display: inline-block;
+  transform: rotate(-30deg) scale(0.8);
+  transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.seasonal-section.is-in-view .seasonal-leaf {
+  transform: rotate(0deg) scale(1);
+}
+
+.title-row-3 em {
+  font-style: italic;
+  color: var(--color-saffron);
+}
+
+.seasonal-prologue {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.seasonal-lead {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #5C3D1E;
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.seasonal-section.is-in-view .seasonal-lead {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.28s;
+}
+
+.seasonal-batch-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #7D490E;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.seasonal-section.is-in-view .seasonal-batch-tag {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.4s;
+}
+
+.tag-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--mango);
+}
+
+/* ==========================================================================
+   Editorial Seasonal Runway Track & Parallax Spreads
+   ========================================================================== */
+
+.seasonal-runway-track {
+  display: flex;
+  flex-direction: column;
+  gap: 7.5rem;
+  margin-top: 4.5rem;
+}
+
+.runway-spread {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.runway-spread-one {
+  gap: 4.5rem;
+}
+
+.runway-spread-two {
+  gap: 5.5rem;
+}
+
+/* Individual Item Positioning & Proportions */
+.seasonal-runway-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+/* 09 Alphonso Cheesecake: Large landscape (approx 58-62%) */
+.runway-item-alpha {
+  width: 58%;
+}
+
+/* 10 Mango Saffron Tart: Narrow portrait (approx 28-32%), vertically staggered */
+.runway-item-beta {
+  width: 32%;
+  margin-top: 7rem;
+}
+
+/* 11 Rose Pistachio Cake: Medium portrait (approx 34-38%) */
+.runway-item-gamma {
+  width: 36%;
+  margin-top: 1rem;
+}
+
+/* 12 Tender Coconut Panna Cotta: Wide landscape (approx 48-54%), vertically staggered */
+.runway-item-delta {
+  width: 52%;
+  margin-top: 5rem;
+}
+
+/* ==========================================================================
+   Item Entrance & Scroll Parallax Kinematics
+   ========================================================================== */
+
+.seasonal-runway-media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--surface-mango-tint);
+  cursor: pointer;
+  outline: none;
+  opacity: 0;
+  transform: translate3d(0, 42px, 0) scale(0.96);
+  box-shadow: 0 14px 28px rgba(36, 21, 15, 0.05);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 550ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 550ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.seasonal-runway-item.is-in-view .seasonal-runway-media {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  box-shadow: 0 20px 36px rgba(201, 131, 36, 0.1);
+}
+
+/* Differential scroll parallax on the staggered spreads */
+.seasonal-section.is-in-view .runway-item-alpha.is-in-view .seasonal-runway-media {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * -0.05), 0) scale(1);
+}
+
+.seasonal-section.is-in-view .runway-item-beta.is-in-view .seasonal-runway-media {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * 0.08), 0) scale(1);
+}
+
+.seasonal-section.is-in-view .runway-item-gamma.is-in-view .seasonal-runway-media {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * -0.04), 0) scale(1);
+}
+
+.seasonal-section.is-in-view .runway-item-delta.is-in-view .seasonal-runway-media {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * 0.07), 0) scale(1);
+}
+
+/* Media Card Hover Elevation */
+.seasonal-runway-media:hover {
+  box-shadow: 0 28px 52px rgba(201, 131, 36, 0.18);
+}
+
+.runway-item-alpha .seasonal-runway-media:hover {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * -0.05 - 8px), 0) scale(1.02);
+}
+.runway-item-beta .seasonal-runway-media:hover {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * 0.08 - 8px), 0) scale(1.02);
+}
+.runway-item-gamma .seasonal-runway-media:hover {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * -0.04 - 8px), 0) scale(1.02);
+}
+.runway-item-delta .seasonal-runway-media:hover {
+  transform: translate3d(0, calc(var(--seasonal-scroll-offset, 0px) * 0.07 - 8px), 0) scale(1.02);
+}
+
+.seasonal-runway-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.seasonal-runway-media:hover .seasonal-runway-photo {
+  transform: scale(1.035);
+}
+
+/* Inline Living Video Layer */
+.seasonal-runway-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.seasonal-runway-video.is-visible {
+  opacity: 1;
+}
+
+/* Lightweight Runway Badge */
+.seasonal-runway-badge {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  background-color: rgba(33, 23, 20, 0.76);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-milk);
+  pointer-events: none;
+  user-select: none;
+}
+
+.runway-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-saffron);
+  transition: background-color var(--transition-fast);
+}
+
+.runway-dot.is-pulsing {
+  background-color: #E3A335;
+  box-shadow: 0 0 6px rgba(227, 163, 53, 0.9);
+  animation: runwayPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes runwayPulse {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Product Copy Sits OUTSIDE the Image */
+.seasonal-runway-copy {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.seasonal-runway-item.is-in-view .seasonal-runway-copy {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.14s;
+}
+
+.runway-tag-row {
+  margin-bottom: 0.15rem;
+}
+
+.runway-index {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-saffron);
+}
+
+.runway-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.runway-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400;
+  color: var(--espresso);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  transition: color var(--transition-fast);
+}
+
+.seasonal-runway-item:hover .runway-name {
+  color: #7D490E;
+}
+
+.runway-price {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--cocoa);
+  flex-shrink: 0;
+}
+
+.runway-flavors {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #7D490E;
+}
+
+.runway-desc {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(36, 21, 15, 0.75);
+  max-width: 480px;
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .seasonal-section {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .seasonal-title-wrap {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .seasonal-runway-track {
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+
+  .runway-spread {
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .runway-item-alpha,
+  .runway-item-beta,
+  .runway-item-gamma,
+  .runway-item-delta {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .runway-name {
+    font-size: 2.125rem;
+  }
+
+  .seasonal-watermark {
+    display: none;
+  }
+
+  .seasonal-section.is-in-view .runway-item-alpha.is-in-view .seasonal-runway-media,
+  .seasonal-section.is-in-view .runway-item-beta.is-in-view .seasonal-runway-media,
+  .seasonal-section.is-in-view .runway-item-gamma.is-in-view .seasonal-runway-media,
+  .seasonal-section.is-in-view .runway-item-delta.is-in-view .seasonal-runway-media {
+    transform: none;
+  }
+
+  /* Mobile scroll-driven image parallax for runway photos */
+  .seasonal-runway-media {
+    overflow: hidden;
+  }
+
+  .seasonal-runway-media .seasonal-runway-photo {
+    transform: scale(1.14) translate3d(0, var(--card-img-parallax, 0px), 0);
+    transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.3, 1);
+    will-change: transform;
+  }
+
+  .seasonal-runway-media:hover .seasonal-runway-photo {
+    transform: scale(1.18) translate3d(0, var(--card-img-parallax, 0px), 0);
+  }
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .seasonal-meta-pill,
+  .title-row-1,
+  .title-row-2,
+  .title-row-3,
+  .seasonal-leaf,
+  .seasonal-lead,
+  .seasonal-batch-tag,
+  .seasonal-watermark,
+  .seasonal-runway-media,
+  .seasonal-runway-copy {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .seasonal-runway-video {
+    transition: none;
+  }
+  .runway-dot.is-pulsing {
+    animation: none;
+  }
+}

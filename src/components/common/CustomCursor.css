@@ -1,0 +1,141 @@
+/* ==========================================================================
+   SOFT HOUR Luxury Editorial Custom Cursor Pointer
+   Precision Dot + Fluid Trailing Ring with Contextual Typography
+   ========================================================================== */
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor .editorial-link,
+  body.has-custom-cursor .tag-item,
+  body.has-custom-cursor .tab-btn {
+    cursor: none !important;
+  }
+
+  /* Preserve native text selection caret on form inputs */
+  body.has-custom-cursor input,
+  body.has-custom-cursor textarea,
+  body.has-custom-cursor select {
+    cursor: text !important;
+  }
+}
+
+.custom-cursor-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999999;
+  mix-blend-mode: difference;
+  overflow: hidden;
+  contain: layout style size;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-cursor-root.is-visible {
+  opacity: 1;
+}
+
+/* Microscopic Central Precision Dot */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* Fluid Trailing Outer Ring / Precision Aura */
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  margin-left: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  will-change: transform, border-color, background-color;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+/* Typographic Badge Text within Expanded Ring */
+.custom-cursor-label {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.6);
+  will-change: transform, opacity;
+  padding: 0 4px;
+}
+
+/* State: Hovering general interactive element (links, buttons) */
+.custom-cursor-ring.is-hovering {
+  border-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* State: Badge mode (expanded with text label) */
+.custom-cursor-ring.has-label {
+  border-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(1px);
+}
+
+/* State: Input / Text field focus (minimize interference with typing) */
+.custom-cursor-ring.is-text-input {
+  opacity: 0 !important;
+  transform: scale(0.2) !important;
+}
+
+.custom-cursor-dot.is-text-input {
+  opacity: 0 !important;
+}
+
+/* Hide completely on touch devices, small viewports, or coarse pointers */
+@media (pointer: coarse), (hover: none), (max-width: 1024px) {
+  .custom-cursor-root {
+    display: none !important;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-root {
+    display: none !important;
+  }
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: auto !important;
+  }
+}

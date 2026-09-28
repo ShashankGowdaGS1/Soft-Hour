@@ -1,0 +1,214 @@
+@import './reset.css';
+@import './variables.css';
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--cream);
+  color: var(--espresso);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: var(--cream);
+  color: var(--espresso);
+  overflow-x: hidden;
+  position: relative;
+}
+
+::selection {
+  background-color: var(--color-black-cherry);
+  color: var(--color-milk);
+}
+
+/* Typography elements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--espresso);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* App container */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Generic layout helpers */
+.container {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter-desktop);
+  padding-right: var(--gutter-desktop);
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-left: var(--gutter-tablet);
+    padding-right: var(--gutter-tablet);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: var(--gutter-mobile);
+    padding-right: var(--gutter-mobile);
+  }
+}
+
+/* Editorial label / micro typography */
+.label-meta {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cocoa);
+}
+
+/* Tiny recipe marginalia note */
+.recipe-note {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--cocoa);
+  opacity: 0.8;
+  font-style: normal;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Tiny editorial numbering token */
+.editorial-num {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--biscuit);
+}
+
+/* Crumb dot cluster motif */
+.crumb-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+  opacity: 0.45;
+}
+
+.crumb-dot {
+  display: inline-block;
+  background-color: var(--cocoa);
+  border-radius: 50%;
+}
+
+.crumb-dot-sm { width: 2px; height: 2px; }
+.crumb-dot-md { width: 3.5px; height: 3.5px; }
+.crumb-dot-lg { width: 5px; height: 5px; }
+
+/* Spoon-like thin divider rule */
+.hairline-spoon {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-subtle);
+  position: relative;
+}
+
+.hairline-spoon::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--cocoa);
+  opacity: 0.6;
+}
+
+/* Editorial link / button with thin underline and arrow */
+.editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  position: relative;
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.editorial-link:hover {
+  color: var(--color-black-cherry);
+}
+
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-black-cherry);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-smooth);
+}
+
+.editorial-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.editorial-link .arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.editorial-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Accessibility focus styles */
+:focus-visible {
+  outline: 1.5px solid var(--color-black-cherry);
+  outline-offset: 3px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,579 @@
+/* ==========================================================================
+   SOFT HOUR Editorial Footer
+   Monolithic Black Cacao Closing Atmosphere with Asymmetric Typography Architecture
+   ========================================================================== */
+
+.footer-section {
+  position: relative;
+  background-color: var(--color-cacao);
+  color: var(--color-bone);
+  padding: 6.5rem 0 3.5rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(242, 239, 232, 0.08);
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   10. Top Editorial Closing Statement (SAVE ROOM for tomorrow.)
+   ========================================================================== */
+.footer-statement-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.footer-statement-headline {
+  flex: 1;
+  min-width: 280px;
+}
+
+.statement-display-title {
+  margin: 0;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+}
+
+.statement-lead {
+  display: flex;
+  gap: 0.28em;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-size: clamp(3.75rem, 8.5vw, 7.5rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-milk);
+  line-height: 0.9;
+}
+
+.statement-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.statement-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+.statement-subphrase {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.4vw, 3.75rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #D47285; /* Refined luminous black-cherry tint on dark surface */
+  margin-top: 0.35rem;
+  line-height: 1;
+  will-change: transform, opacity;
+}
+
+.footer-statement-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.status-live-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(242, 239, 232, 0.18);
+  border-radius: 0;
+  background-color: rgba(242, 239, 232, 0.04);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-saffron);
+}
+
+.status-text {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-milk);
+}
+
+.status-sub {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.45);
+}
+
+/* Hairline Architectural Divider Rule */
+.footer-hairline {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(242, 239, 232, 0.14);
+  margin: 3.5rem 0;
+}
+
+.footer-hairline-bottom {
+  margin: 1.5rem 0 2rem;
+  opacity: 0.65;
+}
+
+/* ==========================================================================
+   11. Asymmetrical Editorial Information Grid
+   ========================================================================== */
+.footer-asymmetric-ledger {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.15fr;
+  gap: 4.5rem;
+  align-items: flex-start;
+}
+
+.ledger-block {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Brand Authority (Large Left Area) */
+.ledger-brand-area {
+  padding-right: 1.5rem;
+}
+
+.ledger-meta-tag {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.5);
+  margin-bottom: 1.25rem;
+}
+
+.ledger-brand-name {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--color-milk);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.35rem;
+}
+
+.ledger-brand-descriptor {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.65);
+  margin: 0 0 1.25rem;
+}
+
+.ledger-brand-summary {
+  font-family: var(--font-sans);
+  font-size: 0.84375rem;
+  line-height: 1.7;
+  color: rgba(242, 239, 232, 0.72);
+  max-width: 380px;
+  margin: 0 0 1.5rem;
+}
+
+.summary-line {
+  display: block;
+  will-change: transform, opacity;
+}
+
+.ledger-whisper-moment {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.whisper-dash {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: rgba(242, 239, 232, 0.35);
+  display: inline-block;
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.whisper-italic {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: #D47285;
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Middle Cluster: Physical Atelier Visit & Operating Schedule */
+.ledger-visit-area {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.ledger-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ledger-label-meta {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.5);
+  margin-bottom: 0.85rem;
+}
+
+.ledger-address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-bone);
+}
+
+.ledger-hours-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.hours-frequency {
+  font-weight: 700;
+  color: var(--color-milk);
+}
+
+.hours-interval {
+  color: rgba(242, 239, 232, 0.8);
+}
+
+/* Right Cluster: Direct Inquiries & Interactive Actions */
+.ledger-actions-area {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.ledger-contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.ledger-text-link {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-bone);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.ledger-text-link:hover {
+  color: #D47285;
+}
+
+.ledger-action-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ledger-action-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 250px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-milk);
+  text-decoration: none;
+  padding: 0.45rem 0 0.55rem;
+  border-bottom: none;
+  background: transparent;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.action-label {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.ledger-action-link .action-arrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.action-link-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(242, 239, 232, 0.16);
+  transform-origin: left center;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, background-color;
+}
+
+.ledger-action-link:hover {
+  color: #D47285;
+}
+
+.ledger-action-link:hover .action-label {
+  transform: translateX(5px);
+}
+
+.ledger-action-link:hover .action-arrow {
+  transform: translateX(7px);
+}
+
+.ledger-action-link:hover .action-link-line {
+  background-color: rgba(242, 239, 232, 0.45);
+}
+
+/* ==========================================================================
+   12. Oversized Signature Wordmark (Monumental Editorial Touch)
+   ========================================================================== */
+.footer-monumental-wordmark-frame {
+  width: 100%;
+  overflow: hidden;
+  padding: 3.5rem 0 1rem;
+  user-select: none;
+  pointer-events: none;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  will-change: transform;
+}
+
+.footer-monumental-wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(5.25rem, 15vw, 15rem);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.035em;
+  color: var(--color-milk);
+  opacity: 0.10; /* exactly 0.07 - 0.12 restraint */
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.wm-char {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.wm-space {
+  width: 0.28em;
+}
+
+/* ==========================================================================
+   13. Final Utility Row
+   ========================================================================== */
+.footer-utility-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.utility-col-left,
+.utility-col-right {
+  display: flex;
+  align-items: center;
+}
+
+.utility-token {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.55);
+}
+
+.utility-delimiter {
+  color: rgba(242, 239, 232, 0.25);
+  margin: 0 0.75rem;
+  font-size: 0.6875rem;
+}
+
+.utility-craft-promise {
+  color: rgba(242, 239, 232, 0.75);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 960px) {
+  .footer-section {
+    padding: 5rem 0 3rem;
+  }
+
+  .footer-statement-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footer-statement-status {
+    align-items: flex-start;
+  }
+
+  .footer-asymmetric-ledger {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem 2.5rem;
+  }
+
+  .ledger-brand-area {
+    grid-column: 1 / -1;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-section {
+    padding: 4.5rem 0 2.5rem;
+  }
+
+  .statement-lead {
+    font-size: clamp(2.35rem, 11vw, 4.25rem);
+    line-height: 0.95;
+  }
+
+  .statement-subphrase {
+    font-size: clamp(1.4rem, 6.5vw, 2.25rem);
+  }
+
+  .footer-hairline {
+    margin: 2.25rem 0;
+  }
+
+  .footer-asymmetric-ledger {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .ledger-brand-name {
+    font-size: 2rem;
+  }
+
+  .ledger-action-link {
+    max-width: 100%;
+  }
+
+  .footer-utility-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .utility-col-left,
+  .utility-col-right {
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-section {
+    padding: 3.75rem 0 2rem;
+  }
+
+  .statement-lead {
+    font-size: clamp(2rem, 11.5vw, 3.25rem);
+  }
+
+  .status-live-chip {
+    padding: 0.35rem 0.65rem;
+    gap: 0.4rem;
+  }
+
+  .status-text {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+  }
+
+  .status-sub {
+    font-size: 0.5rem;
+  }
+
+  .footer-statement-headline {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Accessibility & Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .footer-section {
+    clip-path: none !important;
+  }
+
+  .statement-word,
+  .statement-subphrase,
+  .status-live-chip,
+  .status-dot,
+  .status-sub,
+  .footer-hairline,
+  .footer-col,
+  .summary-line,
+  .whisper-dash,
+  .whisper-italic,
+  .action-link-line,
+  .utility-col-left,
+  .utility-col-right {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .wm-char {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .footer-monumental-wordmark {
+    opacity: 0.08 !important;
+  }
+}

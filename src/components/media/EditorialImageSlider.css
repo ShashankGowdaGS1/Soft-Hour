@@ -1,0 +1,262 @@
+.editorial-slider-container {
+  position: relative;
+  width: 100%;
+  outline: none;
+}
+
+.editorial-slider-container:focus-visible {
+  outline: 1.5px solid var(--cocoa);
+  outline-offset: 4px;
+}
+
+/* Outer frame remains position: relative and does NOT clip metadata */
+.editorial-media-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3.4;
+  user-select: none;
+}
+
+/* Inner media clip receives border-radius, overflow:hidden, and shadow */
+.editorial-media-clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-plate-lg) var(--radius-plate-sm) var(--radius-plate-sm) var(--radius-plate-sm);
+  overflow: hidden;
+  box-shadow: 0 20px 32px rgba(36, 21, 15, 0.08);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--cream);
+  transition: box-shadow 550ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 550ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Seasonal theme adjustments */
+.editorial-slider-container.seasonal .editorial-media-clip {
+  border-color: rgba(227, 163, 53, 0.25);
+  box-shadow: 0 20px 32px rgba(227, 163, 53, 0.12);
+  background-color: #FAF6F0;
+}
+
+/* Slides */
+.editorial-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.editorial-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slide-static {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Subtle breathing / Ken Burns effect while slide is static between transitions */
+.slide-static .editorial-slide-image {
+  animation: slideBreathe 4400ms cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+}
+
+@keyframes slideBreathe {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.025);
+  }
+}
+
+/* Transitions: to-right (Regular photographs travel gently toward the center/right with calibrated luxury timing) */
+.slide-incoming.dir-to-right {
+  z-index: 2;
+  animation: slideInToRight 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide-outgoing.dir-to-right {
+  z-index: 1;
+  animation: slideOutToRight 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInToRight {
+  0% {
+    transform: translateX(-4.5%) scale(1.03);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  35% {
+    opacity: 0.85;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(4.5%) scale(0.975);
+    opacity: 0;
+  }
+}
+
+/* Transitions: to-left (Seasonal photographs travel gently toward the center/left with calibrated luxury timing) */
+.slide-incoming.dir-to-left {
+  z-index: 2;
+  animation: slideInToLeft 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide-outgoing.dir-to-left {
+  z-index: 1;
+  animation: slideOutToLeft 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInToLeft {
+  0% {
+    transform: translateX(4.5%) scale(1.03);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  35% {
+    opacity: 0.85;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-4.5%) scale(0.975);
+    opacity: 0;
+  }
+}
+
+/* Upper-Left Label: Safely inside visual frame, not clipped */
+.editorial-media-label {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--espresso);
+  background-color: rgba(250, 246, 240, 0.95);
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(36, 21, 15, 0.05);
+  white-space: nowrap;
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-media-label.is-swapping {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.editorial-slider-container.seasonal .editorial-media-label {
+  color: #5E3A12;
+  background-color: rgba(250, 248, 243, 0.95);
+  border-color: rgba(201, 131, 36, 0.35);
+  box-shadow: 0 2px 8px rgba(201, 131, 36, 0.08);
+}
+
+/* Lower-Right Image Counter: Safely inside visual frame, not clipped */
+.editorial-media-counter {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-cacao);
+  background-color: rgba(250, 248, 243, 0.95);
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(33, 23, 20, 0.05);
+  white-space: nowrap;
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-media-counter.is-swapping {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.editorial-media-counter .counter-sep {
+  color: var(--biscuit);
+  font-weight: 400;
+}
+
+.editorial-slider-container.seasonal .editorial-media-counter {
+  color: #5E3A12;
+  background-color: rgba(250, 248, 243, 0.95);
+  border-color: rgba(201, 131, 36, 0.35);
+  box-shadow: 0 2px 8px rgba(201, 131, 36, 0.08);
+}
+
+.editorial-slider-container.seasonal .editorial-media-counter .counter-sep {
+  color: var(--color-saffron);
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .slide-static .editorial-slide-image {
+    animation: none;
+  }
+
+  .slide-incoming.dir-to-right,
+  .slide-incoming.dir-to-left {
+    animation: simpleCrossfade 500ms ease forwards;
+  }
+
+  .slide-outgoing.dir-to-right,
+  .slide-outgoing.dir-to-left {
+    animation: simpleFadeOut 500ms ease forwards;
+  }
+}
+
+@keyframes simpleCrossfade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes simpleFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

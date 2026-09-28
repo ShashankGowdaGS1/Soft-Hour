@@ -1,0 +1,676 @@
+/* ==========================================================================
+   Craft Section — Atelier Chronicle & Kitchen Method
+   Visual Direction: Ivory/Cream with Espresso, Cocoa & Biscuit Highlights
+   Animations: Differential Column Scroll Parallax, Masked Typography Reveals,
+               Ticking Crumb Clock, Drawing Quote Rule & Specular Sheen
+   ========================================================================== */
+
+.craft-section {
+  position: relative;
+  padding: 7rem 0 8rem;
+  background-color: var(--cream);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+  --craft-scroll-offset: 0px;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Reveal Base
+   -------------------------------------------------------------------------- */
+.craft-reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.craft-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Narrative Header
+   -------------------------------------------------------------------------- */
+.craft-narrative-header {
+  margin-bottom: 4.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 2.5rem;
+  position: relative;
+}
+
+.craft-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.65rem;
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.craft-narrative-header.is-revealed .craft-meta-row {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.08s;
+}
+
+/* Ticking Crumb Clock Animation */
+.crumb-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.crumb-dot {
+  display: inline-block;
+  border-radius: 50%;
+  background-color: var(--biscuit);
+  animation: crumbClockTick 2.6s ease-in-out infinite;
+}
+
+.crumb-dot-sm {
+  width: 3px;
+  height: 3px;
+}
+
+.crumb-dot-md {
+  width: 5px;
+  height: 5px;
+}
+
+.crumb-cluster .crumb-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.crumb-cluster .crumb-dot:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.crumb-cluster .crumb-dot:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+@keyframes crumbClockTick {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.45;
+    background-color: var(--biscuit);
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 1;
+    background-color: var(--cocoa);
+  }
+}
+
+.craft-title-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 4rem;
+  align-items: flex-end;
+}
+
+.craft-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.94;
+  color: var(--espresso);
+  letter-spacing: -0.02em;
+}
+
+.craft-line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.craft-line-1,
+.craft-line-2,
+.craft-line-3 {
+  display: block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition:
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.craft-narrative-header.is-revealed .craft-line-1 {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.12s;
+}
+
+.craft-narrative-header.is-revealed .craft-line-2 {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.24s;
+}
+
+.craft-narrative-header.is-revealed .craft-line-3 {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.36s;
+}
+
+.craft-line-3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.craft-dash {
+  color: var(--biscuit);
+  display: inline-block;
+  transform-origin: left;
+  transition: transform 0.6s ease;
+}
+
+.craft-narrative-header:hover .craft-dash {
+  transform: scaleX(1.35);
+  color: var(--cocoa);
+}
+
+.craft-line-3 em {
+  font-style: italic;
+  color: var(--cocoa);
+}
+
+/* Side Quote with Drawing Rule */
+.craft-side-quote {
+  position: relative;
+  padding-left: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.quote-accent-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--cocoa);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.2s;
+}
+
+.craft-narrative-header.is-revealed .quote-accent-bar {
+  transform: scaleY(1);
+}
+
+.quote-mark-large {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 0.8;
+  color: var(--biscuit);
+  opacity: 0;
+  transform: scale(0.65) translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.25s;
+}
+
+.craft-narrative-header.is-revealed .quote-mark-large {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.craft-quote-text {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(36, 21, 15, 0.85);
+  font-style: italic;
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(12px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.35s;
+}
+
+.craft-narrative-header.is-revealed .craft-quote-text {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.craft-quote-author {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--cocoa);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition-delay: 0.45s;
+}
+
+.craft-narrative-header.is-revealed .craft-quote-author {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   Dynamic Photo Essay Acts with Differential Column Parallax
+   -------------------------------------------------------------------------- */
+.craft-photo-essay {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+}
+
+.essay-act {
+  display: flex;
+  flex-direction: column;
+}
+
+.essay-act.craft-reveal {
+  opacity: 0;
+  transform: translateY(42px);
+  transition:
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--act-idx, 0) * 130ms + 100ms);
+  will-change: opacity, transform;
+}
+
+.essay-act.craft-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Column Heights & Differential Scroll Parallax */
+.act-aeration {
+  transform: translate3d(0, calc(var(--craft-scroll-offset, 0px) * -0.045), 0);
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1);
+  will-change: transform;
+}
+
+.act-sift {
+  margin-top: 3.5rem;
+  transform: translate3d(0, calc(var(--craft-scroll-offset, 0px) * 0.04), 0);
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1);
+  will-change: transform;
+}
+
+.act-finish {
+  margin-top: 1rem;
+  transform: translate3d(0, calc(var(--craft-scroll-offset, 0px) * -0.055), 0);
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1);
+  will-change: transform;
+}
+
+/* Time Badge with Pulsing Precision Indicator */
+.act-time-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.95rem;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.act-time-pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--cocoa);
+  display: inline-block;
+  position: relative;
+}
+
+.act-time-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--cocoa);
+  opacity: 0.6;
+  animation: actPulseRing 2.4s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+@keyframes actPulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.act-hour {
+  color: var(--espresso);
+  transition: color 0.3s ease;
+}
+
+.essay-act:hover .act-hour {
+  color: var(--cocoa);
+}
+
+.act-sep {
+  color: var(--biscuit);
+}
+
+.act-phase {
+  color: var(--color-pistachio-smoke);
+  font-weight: 700;
+}
+
+/* Photo Frames with Asymmetric Rhythms & Sheen Sweep */
+.act-media-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--whipped);
+  border: 1px solid var(--border-strong);
+  margin-bottom: 1.35rem;
+  box-shadow: 0 16px 36px -10px rgba(36, 21, 15, 0.08);
+  transition:
+    box-shadow 0.45s ease,
+    border-color 0.45s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.media-portrait-crop {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-plate-sm) 0 0 0;
+}
+
+.media-landscape-crop {
+  aspect-ratio: 16 / 11;
+}
+
+.media-square-crop {
+  aspect-ratio: 1 / 1;
+  border-radius: 0 var(--radius-plate-sm) 0 0;
+}
+
+.act-media-wrapper:hover {
+  border-color: var(--cocoa);
+  box-shadow:
+    0 24px 50px -10px rgba(36, 21, 15, 0.16),
+    0 0 24px rgba(184, 115, 51, 0.12);
+  transform: translateY(-4px);
+}
+
+.act-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.act-media-wrapper:hover .act-photo {
+  transform: scale(1.045);
+}
+
+/* Specular diagonal sheen light sweep */
+.craft-media-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 80%
+  );
+  transform: translateX(-130%) translateY(-130%);
+  transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.essay-act.is-revealed .craft-media-sheen {
+  transform: translateX(130%) translateY(130%);
+  transition-delay: calc(var(--act-idx, 0) * 140ms + 300ms);
+}
+
+.act-media-wrapper:hover .craft-media-sheen {
+  transform: translateX(130%) translateY(130%);
+  transition-duration: 0.85s;
+  transition-delay: 0s;
+}
+
+.act-corner-tag {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background-color: rgba(36, 21, 15, 0.85);
+  color: var(--whipped);
+  padding: 0.22rem 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  backdrop-filter: blur(6px);
+  z-index: 4;
+  border: 1px solid rgba(250, 248, 243, 0.12);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.act-media-wrapper:hover .act-corner-tag {
+  background-color: var(--espresso);
+  border-color: var(--biscuit);
+  transform: translateY(-2px);
+}
+
+.act-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.act-heading {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 400;
+  color: var(--espresso);
+  line-height: 1.15;
+  transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.essay-act:hover .act-heading {
+  color: var(--cocoa);
+  transform: translateX(4px);
+}
+
+.act-body {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: rgba(36, 21, 15, 0.75);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout & Behavior
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .craft-section {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .craft-title-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .craft-photo-essay {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .act-aeration,
+  .act-sift,
+  .act-finish {
+    transform: none !important;
+    margin-top: 0;
+  }
+
+  .media-portrait-crop,
+  .media-landscape-crop,
+  .media-square-crop {
+    aspect-ratio: 4 / 3.2;
+  }
+
+  /* Mobile scroll-driven image parallax */
+  .act-media-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .act-media-wrapper .act-photo {
+    transform: scale(1.14) translate3d(0, var(--act-img-parallax, 0px), 0);
+    transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.3, 1);
+    will-change: transform;
+  }
+
+  .act-media-wrapper:hover .act-photo {
+    transform: scale(1.18) translate3d(0, var(--act-img-parallax, 0px), 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .craft-narrative-header {
+    margin-bottom: 3.25rem;
+    padding-bottom: 2rem;
+  }
+
+  .craft-meta-row {
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .craft-side-quote {
+    padding-left: 1.25rem;
+    gap: 0.5rem;
+  }
+
+  .quote-mark-large {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .craft-section {
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .craft-title {
+    font-size: clamp(2.25rem, 9.5vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+
+  .craft-line-mask {
+    padding-bottom: 0.08em;
+  }
+
+  .craft-line-3 {
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+  }
+
+  .craft-photo-essay {
+    gap: 2.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .media-portrait-crop,
+  .media-landscape-crop,
+  .media-square-crop {
+    aspect-ratio: 16 / 11;
+  }
+
+  .act-heading {
+    font-size: 1.375rem;
+  }
+
+  .act-body {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 480px) {
+  .craft-section {
+    padding: 3rem 0 3.75rem;
+  }
+
+  .craft-title {
+    font-size: clamp(2.1rem, 10vw, 2.75rem);
+  }
+
+  .editorial-num {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+  }
+
+  .recipe-note {
+    font-size: 0.625rem;
+  }
+
+  .act-time-badge {
+    font-size: 0.5625rem;
+    letter-spacing: 0.12em;
+    gap: 0.4rem;
+  }
+
+  .act-corner-tag {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.5rem;
+    padding: 0.18rem 0.45rem;
+  }
+
+  .act-heading {
+    font-size: 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .craft-reveal,
+  .craft-line-1,
+  .craft-line-2,
+  .craft-line-3,
+  .craft-quote-text,
+  .quote-mark-large,
+  .quote-accent-bar,
+  .craft-media-sheen {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .act-aeration,
+  .act-sift,
+  .act-finish {
+    transform: none !important;
+  }
+
+  .crumb-dot,
+  .act-time-pulse::after {
+    animation: none !important;
+  }
+}

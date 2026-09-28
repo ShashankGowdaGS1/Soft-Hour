@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#211714"/>
+  <circle cx="32" cy="32" r="26" stroke="#F2EFE8" stroke-width="1.2" stroke-opacity="0.3"/>
+  <circle cx="32" cy="32" r="23" fill="#F7F5F0"/>
+  <!-- Elegant Monogram SH -->
+  <text x="32" y="39" font-family="'Instrument Serif', Georgia, serif" font-size="22" font-style="italic" fill="#211714" text-anchor="middle" font-weight="400" letter-spacing="-0.5">S</text>
+  <circle cx="39.5" cy="25" r="2" fill="#6B1E2E"/>
+</svg>

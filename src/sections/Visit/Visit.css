@@ -1,0 +1,316 @@
+.visit-section {
+  position: relative;
+  padding: 6.5rem 0 8rem;
+  background-color: var(--whipped);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.visit-editorial-header {
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.5rem;
+}
+
+.visit-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.visit-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--espresso);
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+/* Two-column split */
+.visit-split-stage {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 5rem;
+  align-items: flex-start;
+}
+
+/* Left Column: Letterpress Stationery */
+.visit-stationery-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.stationery-brand-block {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.stationery-brand-name {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--espresso);
+  line-height: 1;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.stationery-descriptor {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cocoa);
+}
+
+.stationery-detail-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stationery-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stationery-label {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--biscuit);
+  text-transform: uppercase;
+}
+
+.stationery-value {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--espresso);
+}
+
+.stationery-subvalue {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--cocoa);
+  opacity: 0.85;
+}
+
+.stationery-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.stationery-cta {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+}
+
+/* Right Column: Boutique Printed Menu Sheet */
+.atelier-menu-sheet {
+  position: relative;
+  background-color: var(--cream);
+  padding: 3rem;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 16px 36px rgba(36, 21, 15, 0.05);
+}
+
+/* Corner registration crosses */
+.sheet-cross {
+  position: absolute;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--cocoa);
+  opacity: 0.5;
+  user-select: none;
+  pointer-events: none;
+}
+
+.sheet-cross-tl { top: 0.5rem; left: 0.5rem; }
+.sheet-cross-tr { top: 0.5rem; right: 0.5rem; }
+.sheet-cross-bl { bottom: 0.5rem; left: 0.5rem; }
+.sheet-cross-br { bottom: 0.5rem; right: 0.5rem; }
+
+.sheet-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.sheet-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.sheet-tag {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cocoa);
+}
+
+.sheet-date {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--biscuit);
+  font-weight: 600;
+}
+
+.sheet-title {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 0.25rem;
+}
+
+.sheet-sub {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--cocoa);
+  opacity: 0.8;
+}
+
+/* Sheet Rows */
+.sheet-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-pastry-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.15rem 0;
+  border-bottom: 1px dashed var(--border-dashed);
+}
+
+.sheet-item-col-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sheet-item-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.sheet-item-num {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--biscuit);
+}
+
+.sheet-item-name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--espresso);
+}
+
+.sheet-item-notes {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--cocoa);
+  padding-left: 1.5rem;
+}
+
+.sheet-item-col-status {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.sheet-item-price {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cocoa);
+}
+
+/* Hand-stamped status labels */
+.sheet-status-stamp {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1px;
+}
+
+.stamp-available {
+  color: #4C592C;
+  border: 1px solid rgba(137, 148, 99, 0.4);
+  background-color: rgba(137, 148, 99, 0.12);
+}
+
+.stamp-low {
+  color: #9E580A;
+  border: 1px solid rgba(227, 163, 53, 0.45);
+  background-color: rgba(227, 163, 53, 0.15);
+}
+
+.stamp-sold {
+  color: var(--cocoa);
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+/* Sheet Footnote */
+.sheet-footer {
+  margin-top: 1.5rem;
+}
+
+.sheet-footnote {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+  color: var(--cocoa);
+  opacity: 0.85;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .visit-section {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .visit-split-stage {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .atelier-menu-sheet {
+    padding: 2rem 1.25rem;
+  }
+
+  .sheet-pastry-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .sheet-item-col-status {
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 1.5rem;
+  }
+}

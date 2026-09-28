@@ -1,0 +1,1050 @@
+/* ==========================================================================
+   Origin Notes — Material Register (Ingredient Editorial)
+   Visual Direction: Muted Black Cherry / Oxide Background with Porcelain Typography
+   Animations: Creative Multi-Plane Scroll Parallax, Editorial Masked Reveals,
+               Celestial Specimen Orbit, Sheen Sweep & Cascading Ledger
+   ========================================================================== */
+
+.origin-notes-section {
+  position: relative;
+  background-color: #2D141C;
+  color: var(--color-milk);
+  padding: 8.5rem 0 9rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(250, 248, 243, 0.08);
+  --origin-scroll-offset: 0px;
+}
+
+/* --------------------------------------------------------------------------
+   Background Typographic Watermark with Differential Drift
+   -------------------------------------------------------------------------- */
+.origin-watermark-cacao {
+  position: absolute;
+  top: 1.5rem;
+  left: -1%;
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 20vw, 22rem);
+  font-weight: 400;
+  line-height: 0.8;
+  color: #FAF8F3;
+  opacity: 0.048;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.04em;
+  z-index: 1;
+  transform: translate3d(
+    calc(var(--origin-scroll-offset, 0px) * -0.06),
+    calc(var(--origin-scroll-offset, 0px) * 0.035),
+    0
+  );
+  transition: transform 0.06s ease-out;
+  will-change: transform;
+}
+
+.origin-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Sub-block Scroll Reveal Base
+   -------------------------------------------------------------------------- */
+.origin-reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.origin-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Section Header & Typography
+   -------------------------------------------------------------------------- */
+.origin-header {
+  border-bottom: 1px solid rgba(250, 248, 243, 0.12);
+  padding-bottom: 3.25rem;
+  margin-bottom: 5.5rem;
+  position: relative;
+}
+
+.origin-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.65rem;
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.origin-header.is-revealed .origin-eyebrow-row {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.08s;
+}
+
+.origin-eyebrow-tag {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D6BCA4;
+  position: relative;
+}
+
+.origin-dot-sep {
+  color: #C98324;
+  display: inline-block;
+  animation: originDotPulse 3s ease-in-out infinite;
+}
+
+@keyframes originDotPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+    color: #E2A346;
+  }
+}
+
+.origin-eyebrow-sub {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 243, 0.6);
+}
+
+.origin-header-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: flex-end;
+}
+
+.origin-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7vw, 6.75rem);
+  font-weight: 400;
+  line-height: 0.92;
+  color: #FAF8F3;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.origin-line-mask,
+.cacao-display-mask,
+.alphonso-display-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.origin-line-1,
+.origin-line-2 {
+  display: block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition:
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.origin-header.is-revealed .origin-line-1 {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.12s;
+}
+
+.origin-header.is-revealed .origin-line-2 {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.25s;
+}
+
+.origin-manifest-lead {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(5px);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s ease;
+}
+
+.origin-header.is-revealed .origin-manifest-lead {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition-delay: 0.35s;
+}
+
+.origin-statement {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.68;
+  color: rgba(250, 248, 243, 0.75);
+  max-width: 440px;
+}
+
+/* --------------------------------------------------------------------------
+   Editorial Layout Stage
+   -------------------------------------------------------------------------- */
+.origin-editorial-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 6.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Zone 1: Cacao Feature with Asymmetric Depth
+   -------------------------------------------------------------------------- */
+.origin-zone-cacao {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.cacao-typography-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cacao-display-lead {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #C98324;
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.origin-zone-cacao.is-revealed .cacao-display-lead {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.08s;
+}
+
+.cacao-display-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7.5vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: #FAF8F3;
+  display: block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition:
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.origin-zone-cacao.is-revealed .cacao-display-name {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.16s;
+}
+
+.cacao-sub-note {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 243, 0.55);
+  margin-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.origin-zone-cacao.is-revealed .cacao-sub-note {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.26s;
+}
+
+.origin-media-cacao {
+  position: relative;
+  width: 82%;
+  aspect-ratio: 4 / 4.8;
+  overflow: hidden;
+  border-radius: 0 0 88px 0;
+  border: 1px solid rgba(250, 248, 243, 0.12);
+  background-color: #211016;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.65);
+  transform: translate3d(0, calc(var(--origin-scroll-offset, 0px) * -0.045), 0);
+  transition:
+    transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+  will-change: transform;
+}
+
+.origin-media-cacao:hover {
+  border-color: rgba(201, 131, 36, 0.38);
+  box-shadow:
+    0 32px 75px -15px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(201, 131, 36, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Zone 2: Alphonso & Saffron
+   -------------------------------------------------------------------------- */
+.origin-zone-middle {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4.5rem;
+  align-items: flex-start;
+}
+
+.origin-zone-alphonso {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.alphonso-editorial-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.alphonso-tag {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C98324;
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.origin-zone-middle.is-revealed .alphonso-tag {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.1s;
+}
+
+.alphonso-display-text {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.75rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: #FAF8F3;
+  display: block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition:
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.origin-zone-middle.is-revealed .alphonso-display-text {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
+.origin-media-alphonso {
+  position: relative;
+  width: 95%;
+  aspect-ratio: 16 / 10.5;
+  overflow: hidden;
+  border-radius: 72px 0 0 0;
+  border: 1px solid rgba(250, 248, 243, 0.12);
+  background-color: #211016;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.65);
+  transform: translate3d(0, calc(var(--origin-scroll-offset, 0px) * 0.045), 0);
+  transition:
+    transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+  will-change: transform;
+}
+
+.origin-media-alphonso:hover {
+  border-color: rgba(201, 131, 36, 0.38);
+  box-shadow:
+    0 32px 75px -15px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(201, 131, 36, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Saffron Specimen Portal — Celestial Orbital Lens
+   -------------------------------------------------------------------------- */
+.origin-zone-saffron {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-top: 3.5rem;
+  transform: translate3d(0, calc(var(--origin-scroll-offset, 0px) * -0.075), 0);
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1);
+  will-change: transform;
+}
+
+.origin-media-saffron {
+  position: relative;
+  width: 78%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 131, 36, 0.45);
+  background-color: #211016;
+  box-shadow:
+    0 20px 50px -15px rgba(0, 0, 0, 0.75),
+    0 0 32px rgba(201, 131, 36, 0.18);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1),
+    box-shadow 0.5s ease,
+    border-color 0.5s ease;
+}
+
+.origin-media-saffron:hover {
+  transform: scale(1.035);
+  border-color: rgba(226, 163, 70, 0.75);
+  box-shadow:
+    0 25px 65px -10px rgba(0, 0, 0, 0.85),
+    0 0 45px rgba(201, 131, 36, 0.32);
+}
+
+/* Specimen Orbital Ring */
+.saffron-lens-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1px dashed rgba(201, 131, 36, 0.38);
+  pointer-events: none;
+  animation: saffronOrbit 40s linear infinite;
+  z-index: 2;
+  transition: border-color 0.4s ease, inset 0.4s ease;
+}
+
+.origin-media-saffron:hover .saffron-lens-ring {
+  inset: -13px;
+  border-color: rgba(226, 163, 70, 0.68);
+  animation-duration: 22s;
+}
+
+@keyframes saffronOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ambient Saffron Warm Glow */
+.saffron-lens-glow {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 131, 36, 0.25) 0%, rgba(201, 131, 36, 0.05) 55%, transparent 75%);
+  filter: blur(14px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: saffronPulseGlow 4.8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes saffronPulseGlow {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+.saffron-typography-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.saffron-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  font-weight: 400;
+  color: #C98324;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.origin-zone-middle.is-revealed .saffron-name {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+
+.saffron-micro {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 243, 0.65);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.origin-zone-middle.is-revealed .saffron-micro {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.38s;
+}
+
+/* --------------------------------------------------------------------------
+   Universal Photographic Styling & Creative Sheen Sweep
+   -------------------------------------------------------------------------- */
+.origin-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.origin-media-saffron .origin-photo {
+  border-radius: 50%;
+}
+
+.origin-media-cacao:hover .origin-photo,
+.origin-media-alphonso:hover .origin-photo,
+.origin-media-saffron:hover .origin-photo {
+  transform: scale(1.045);
+}
+
+/* Specular diagonal sheen light sweep */
+.origin-media-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 80%
+  );
+  transform: translateX(-130%) translateY(-130%);
+  transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.origin-reveal.is-revealed .origin-media-sheen {
+  transform: translateX(130%) translateY(130%);
+}
+
+.origin-media-cacao:hover .origin-media-sheen,
+.origin-media-alphonso:hover .origin-media-sheen,
+.origin-media-saffron:hover .origin-media-sheen {
+  transform: translateX(130%) translateY(130%);
+  transition-duration: 0.85s;
+}
+
+.origin-caption {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 1rem;
+  background-color: rgba(33, 16, 22, 0.88);
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #FAF8F3;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  z-index: 4;
+  border: 1px solid rgba(250, 248, 243, 0.12);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.origin-media-cacao:hover .origin-caption,
+.origin-media-alphonso:hover .origin-caption,
+.origin-media-saffron:hover .origin-caption {
+  border-color: rgba(201, 131, 36, 0.4);
+  background-color: rgba(45, 20, 28, 0.94);
+}
+
+/* --------------------------------------------------------------------------
+   Botanical Inscription Ribbon
+   -------------------------------------------------------------------------- */
+.origin-botanical-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2.35rem 0;
+  border-top: 1px dashed rgba(250, 248, 243, 0.16);
+  border-bottom: 1px dashed rgba(250, 248, 243, 0.16);
+  user-select: none;
+  overflow: hidden;
+}
+
+.origin-botanical-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 131, 36, 0.08) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateX(-40%);
+  transition: opacity 0.9s ease, transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.origin-botanical-row.is-revealed::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.botanical-term {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 243, 0.75);
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.origin-botanical-row:hover .botanical-term {
+  color: #FAF8F3;
+  letter-spacing: 0.28em;
+}
+
+.botanical-bullet {
+  color: #C98324;
+  font-size: 0.925rem;
+  display: inline-block;
+  animation: floronBreathe 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes floronBreathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.3) rotate(14deg);
+    opacity: 1;
+    color: #E2A346;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Material Register Ledger Table — Pinned Sequential Provenance Stage
+   -------------------------------------------------------------------------- */
+.provenance-stage {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 0 3.5rem;
+}
+
+.provenance-inner {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.provenance-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  will-change: transform, opacity;
+}
+
+.provenance-header-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.provenance-eyebrow-tag {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D6BCA4;
+}
+
+.provenance-dot-sep {
+  color: #C98324;
+}
+
+.provenance-eyebrow-sub {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 243, 0.6);
+}
+
+.provenance-progress-counter {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #C98324;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.provenance-current-num {
+  font-variant-numeric: tabular-nums;
+  color: #E2A346;
+}
+
+.provenance-sep {
+  opacity: 0.4;
+  color: rgba(250, 248, 243, 0.5);
+}
+
+.provenance-total-num {
+  opacity: 0.65;
+  color: #D6BCA4;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Horizontal Top Rule drawn from left to right */
+.provenance-top-rule {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 131, 36, 0.85) 0%,
+    rgba(250, 248, 243, 0.35) 45%,
+    rgba(250, 248, 243, 0.08) 100%
+  );
+  margin-bottom: 1.15rem;
+  transform-origin: left;
+  will-change: transform;
+}
+
+.origin-ledger-header {
+  display: grid;
+  grid-template-columns: 50px 180px 220px 1fr;
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid rgba(250, 248, 243, 0.2);
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 243, 0.45);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.ledger-th-col {
+  display: block;
+  will-change: transform, opacity;
+}
+
+.origin-ledger-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.origin-ledger-row {
+  display: grid;
+  grid-template-columns: 50px 180px 220px 1fr;
+  align-items: baseline;
+  padding: 1.4rem 0 1.4rem 1.25rem;
+  border-bottom: 1px solid rgba(250, 248, 243, 0.08);
+  position: relative;
+  box-sizing: border-box;
+  will-change: opacity, transform;
+}
+
+/* Vertical Left Accent Line (drawn 0 -> 100% on active row) */
+.provenance-accent-line {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 2px;
+  background-color: #C98324;
+  border-radius: 2px;
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Horizontal 1px Origin Trace Line beneath the row */
+.provenance-trace-line {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 131, 36, 0.9) 0%,
+    rgba(226, 163, 70, 0.55) 35%,
+    rgba(250, 248, 243, 0.18) 75%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Column Typographic Details */
+.origin-num-col {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(250, 248, 243, 0.4);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
+.origin-material-col {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #FAF8F3;
+  letter-spacing: -0.01em;
+  transform-origin: left center;
+  will-change: transform, opacity, letter-spacing;
+}
+
+.origin-source-col {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #C98324;
+  will-change: transform, opacity, color;
+}
+
+.origin-note-col {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: rgba(250, 248, 243, 0.7);
+  will-change: transform, opacity, color;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .origin-ledger-row:hover {
+    background-color: rgba(250, 248, 243, 0.025);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout & Scaling
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .origin-notes-section {
+    padding: 5.5rem 0 6rem;
+  }
+
+  .origin-watermark-cacao {
+    font-size: clamp(4.5rem, 16vw, 9.5rem);
+    top: 1rem;
+    left: 0;
+  }
+
+  .origin-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .origin-eyebrow-row {
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .origin-title {
+    font-size: clamp(2.35rem, 9.5vw, 4.25rem);
+    line-height: 0.96;
+  }
+
+  .cacao-display-name,
+  .alphonso-display-text {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .origin-header-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .origin-editorial-stage {
+    gap: 4.5rem;
+  }
+
+  .origin-zone-cacao,
+  .origin-zone-middle {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .origin-media-cacao,
+  .origin-media-alphonso,
+  .origin-media-saffron {
+    width: 100%;
+    transform: none !important;
+    overflow: hidden;
+  }
+
+  .origin-media-cacao img,
+  .origin-media-alphonso img,
+  .origin-media-saffron img {
+    transform: scale(1.08) translate3d(0, calc(var(--origin-scroll-offset, 0px) * 0.04), 0);
+    transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1);
+    will-change: transform;
+  }
+
+  .origin-zone-saffron {
+    margin-top: 0;
+    transform: none !important;
+  }
+
+  .origin-media-saffron {
+    width: 190px;
+    height: 190px;
+  }
+
+  .origin-botanical-row {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 0;
+  }
+
+  .origin-ledger-header {
+    display: none;
+  }
+
+  .provenance-stage {
+    padding: 1.5rem 0 2rem;
+  }
+
+  .provenance-header-row {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .provenance-progress-counter {
+    font-size: 0.625rem;
+  }
+
+  .origin-ledger-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 1.25rem 0 1.25rem 1rem;
+  }
+
+  .origin-ledger-row:hover {
+    padding-left: 1rem;
+  }
+
+  .origin-num-col {
+    margin-bottom: 0.2rem;
+  }
+
+  .origin-material-col {
+    font-size: 1.25rem;
+  }
+
+  .provenance-trace-line {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .origin-reveal,
+  .origin-line-1,
+  .origin-line-2,
+  .cacao-display-name,
+  .alphonso-display-text,
+  .origin-ledger-row,
+  .origin-media-sheen,
+  .origin-manifest-lead,
+  .provenance-header-row,
+  .ledger-th-col {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .origin-watermark-cacao,
+  .origin-media-cacao,
+  .origin-media-alphonso,
+  .origin-zone-saffron {
+    transform: none !important;
+  }
+
+  .saffron-lens-ring,
+  .saffron-lens-glow,
+  .botanical-bullet,
+  .origin-dot-sep {
+    animation: none !important;
+  }
+
+  .provenance-top-rule {
+    transform: none !important;
+  }
+
+  .provenance-accent-line {
+    opacity: 0.5 !important;
+    transform: scaleY(1) !important;
+  }
+
+  .provenance-trace-line {
+    display: none !important;
+  }
+}

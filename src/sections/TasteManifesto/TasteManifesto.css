@@ -1,0 +1,338 @@
+/* ==========================================================================
+   Taste Manifesto Section — Philosophy & Dark Aesthetic
+   Scroll-Animated Entrance & Continuous Parallax Kinematics
+   ========================================================================== */
+
+.manifesto-section {
+  position: relative;
+  padding: 6.5rem 0 7rem;
+  background-color: var(--color-cacao);
+  color: var(--color-bone);
+  border-top: 1px solid rgba(242, 239, 232, 0.1);
+  border-bottom: 1px solid rgba(242, 239, 232, 0.1);
+  overflow: hidden;
+
+  /* Default custom properties for scroll kinematics */
+  --manifesto-offset: 0px;
+  --manifesto-progress: 0.5;
+}
+
+.manifesto-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Top Ledger Header with Animated Line Reveal
+   ========================================================================== */
+
+.manifesto-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(242, 239, 232, 0.12);
+  color: rgba(242, 239, 232, 0.65);
+  position: relative;
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.manifesto-section.is-in-view .manifesto-top-meta {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.05s;
+}
+
+.manifesto-top-meta .editorial-num,
+.manifesto-top-meta .recipe-note {
+  color: rgba(242, 239, 232, 0.65);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Central Statement Pod with Differential Parallax Motion
+   ========================================================================== */
+
+.manifesto-statement-pod {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 860px;
+  margin-bottom: 4.5rem;
+}
+
+.manifesto-seal-mark {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: rgba(242, 239, 232, 0.5);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.manifesto-section.is-in-view .manifesto-seal-mark {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.15s;
+}
+
+.manifesto-statement {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7.5vw, 7rem);
+  line-height: 0.94;
+  font-weight: 400;
+  color: var(--color-milk);
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+}
+
+/* Staggered Differential Parallax on Statement Parts */
+.statement-part-slow {
+  display: block;
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.manifesto-section.is-in-view .statement-part-slow {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--manifesto-offset, 0px) * 0.07), 0);
+  transition-delay: 0.22s;
+}
+
+.statement-part-fast {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-left: clamp(1.5rem, 5vw, 4rem);
+  opacity: 0;
+  transform: translate3d(0, 42px, 0);
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.manifesto-section.is-in-view .statement-part-fast {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--manifesto-offset, 0px) * 0.16), 0);
+  transition-delay: 0.36s;
+}
+
+.statement-dash {
+  font-family: var(--font-display);
+  color: rgba(242, 239, 232, 0.3);
+  font-weight: 300;
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.statement-part-fast em {
+  font-style: italic;
+  color: rgba(250, 248, 243, 0.88);
+}
+
+.manifesto-elaboration {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: rgba(242, 239, 232, 0.75);
+  max-width: 580px;
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.manifesto-section.is-in-view .manifesto-elaboration {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--manifesto-offset, 0px) * 0.05), 0);
+  transition-delay: 0.48s;
+}
+
+/* ==========================================================================
+   Balanced Three-Column Principle Triptych with Staggered Parallax Cascade
+   ========================================================================== */
+
+.manifesto-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(242, 239, 232, 0.12);
+  position: relative;
+}
+
+.triptych-pillar {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.5rem 1.25rem 0;
+  border-right: 1px solid rgba(242, 239, 232, 0.12);
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease;
+  border-radius: 4px;
+  will-change: transform, opacity;
+}
+
+.triptych-pillar:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+/* Staggered in-view triggers & unique parallax depth rates */
+.manifesto-section.is-in-view .triptych-pillar.pillar-1 {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--manifesto-offset, 0px) * 0.04), 0);
+  transition-delay: 0.62s;
+}
+
+.manifesto-section.is-in-view .triptych-pillar.pillar-2 {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--manifesto-offset, 0px) * 0.09), 0);
+  transition-delay: 0.74s;
+}
+
+.manifesto-section.is-in-view .triptych-pillar.pillar-3 {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--manifesto-offset, 0px) * 0.14), 0);
+  transition-delay: 0.86s;
+}
+
+/* Pillar Interactive Hover States */
+.triptych-pillar:hover {
+  background-color: rgba(250, 248, 243, 0.025);
+}
+
+.pillar-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.pillar-roman {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-pistachio-smoke);
+  font-style: italic;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.triptych-pillar:hover .pillar-roman {
+  color: var(--color-milk);
+  transform: translateY(-2px);
+}
+
+.pillar-title {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-milk);
+  transition: color 0.3s ease;
+}
+
+.triptych-pillar:hover .pillar-title {
+  color: #fff;
+}
+
+.pillar-body {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: rgba(242, 239, 232, 0.72);
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.pillar-foot {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(242, 239, 232, 0.4);
+  transition: color 0.3s ease;
+}
+
+.triptych-pillar:hover .pillar-foot {
+  color: rgba(242, 239, 232, 0.75);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .manifesto-section {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .manifesto-triptych {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .triptych-pillar {
+    border-right: none;
+    border-bottom: 1px solid rgba(242, 239, 232, 0.12);
+    padding-right: 0;
+    padding-bottom: 2rem;
+  }
+
+  .triptych-pillar:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .statement-part-fast {
+    margin-left: 0;
+  }
+
+  .manifesto-section.is-in-view .statement-part-slow,
+  .manifesto-section.is-in-view .statement-part-fast,
+  .manifesto-section.is-in-view .manifesto-elaboration,
+  .manifesto-section.is-in-view .triptych-pillar.pillar-1,
+  .manifesto-section.is-in-view .triptych-pillar.pillar-2,
+  .manifesto-section.is-in-view .triptych-pillar.pillar-3 {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .manifesto-top-meta,
+  .manifesto-seal-mark,
+  .statement-part-slow,
+  .statement-part-fast,
+  .manifesto-elaboration,
+  .triptych-pillar {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

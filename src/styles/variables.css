@@ -1,0 +1,64 @@
+:root {
+  /* ==========================================================================
+     SOFT HOUR Global Contemporary Luxury Palette System
+     ========================================================================== */
+
+  /* Canonical Brand Color Tokens */
+  --color-bone: #F2EFE8;            /* Porcelain Bone: Primary light background */
+  --color-milk: #FAF8F3;            /* Milk Glass: Elevated light surfaces, drawer, cards */
+  --color-cacao: #211714;           /* Black Cacao: Primary text and dark-surface anchor */
+  --color-black-cherry: #5A2430;    /* Black Cherry: Signature SOFT HOUR accent */
+  --color-saffron: #C98324;         /* Burnt Saffron: Reserved mainly for Seasonal content */
+  --color-pistachio-smoke: #858B6B; /* Smoked Pistachio: Botanical, craft, and ingredient details */
+
+  /* Semantic UI Tokens (backward-compatible mappings) */
+  --cream: var(--color-bone);
+  --whipped: var(--color-milk);
+  --espresso: var(--color-cacao);
+  --cocoa: #543E36;                 /* Refined deep cacao tone for secondary typography */
+  --biscuit: #C2B6A6;               /* Soft neutral tone */
+
+  /* Accents */
+  --cherry: var(--color-black-cherry);
+  --pistachio: var(--color-pistachio-smoke);
+  --mango: var(--color-saffron);
+  --berry: var(--color-black-cherry);
+  --caramel: var(--color-black-cherry);
+
+  /* Subtle surface tints for section rhythm */
+  --surface-cacao: var(--color-cacao);
+  --surface-bone: var(--color-bone);
+  --surface-milk: var(--color-milk);
+  --surface-cocoa-tint: #ECE6DC;
+  --surface-mango-tint: #FAF4E8;
+  --surface-saffron-tint: #FAF4E8;
+  --surface-pistachio-tint: #EFF1EB;
+
+  /* Typography tokens */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Graphic motif tokens */
+  --radius-plate-sm: 24px;
+  --radius-plate-md: 64px;
+  --radius-plate-lg: 140px;
+  --radius-plate-full: 9999px;
+
+  /* Layout and spacing tokens */
+  --site-max-width: 1440px;
+  --gutter-desktop: 4rem;
+  --gutter-tablet: 2.5rem;
+  --gutter-mobile: 1.5rem;
+  --header-height: 5.5rem;
+
+  /* Transitions */
+  --transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-subtle: 360ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Thin borders */
+  --border-subtle: rgba(33, 23, 20, 0.12);
+  --border-strong: rgba(33, 23, 20, 0.28);
+  --border-light: rgba(242, 239, 232, 0.18);
+  --border-dashed: rgba(33, 23, 20, 0.22);
+}

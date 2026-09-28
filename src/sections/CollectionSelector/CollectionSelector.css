@@ -1,0 +1,398 @@
+/* ==========================================================================
+   Collection Selector (Choose Your Craving)
+   Featuring: Scroll Entrance Animations, Scroll Parallax & Calibrated Image Transitions
+   ========================================================================== */
+
+.craving-section {
+  position: relative;
+  background-color: var(--cream);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+
+  /* Default scroll offset */
+  --craving-offset: 0px;
+}
+
+.craving-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+
+/* ==========================================================================
+   Base World Zone Layout & Initial States
+   ========================================================================== */
+
+.craving-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4.5rem 4rem;
+  text-decoration: none;
+  color: var(--espresso);
+  overflow: hidden;
+  transition: background-color var(--transition-smooth);
+}
+
+/* Zone 1: Regular World */
+.craving-zone-regular {
+  background-color: var(--whipped);
+  border-right: 1px solid var(--border-subtle);
+}
+
+.craving-zone-regular:hover {
+  background-color: #F7F1E8;
+}
+
+.craving-world-header {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Scroll-Animated Entrance Elements
+   ========================================================================== */
+
+.craving-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.craving-section.is-in-view .craving-tag-row {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.1s;
+}
+
+.craving-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 6vw, 6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--espresso);
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.craving-section.is-in-view .craving-title {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.22s;
+}
+
+.craving-flavor-notes {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--cocoa);
+  max-width: 420px;
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.craving-section.is-in-view .craving-flavor-notes {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.34s;
+}
+
+/* Subtle Center Seam Architectural Marker */
+.craving-divider-marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  z-index: 5;
+  pointer-events: none;
+  background-color: var(--whipped);
+  padding: 0.75rem 0.35rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(33, 23, 20, 0.06);
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.craving-section.is-in-view .craving-divider-marker {
+  opacity: 1;
+  transform: translate(-50%, calc(-50% + var(--craving-offset, 0px) * -0.02)) scale(1);
+  transition-delay: 0.5s;
+}
+
+.craving-divider-marker span {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cocoa);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Regular & Seasonal Media Wraps — Image Style Animation with Calibrated Timing
+   ========================================================================== */
+
+.craving-regular-media-wrap,
+.craving-seasonal-media-wrap {
+  position: relative;
+  margin: 2.75rem 0;
+  width: 310px;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.craving-regular-media-wrap {
+  align-self: flex-start;
+  transform: translate3d(0, 36px, 0) scale(0.96);
+}
+
+.craving-seasonal-media-wrap {
+  align-self: flex-end;
+  transform: translate3d(0, 36px, 0) scale(0.96);
+}
+
+/* Entrance reveal with continuous scroll parallax */
+.craving-section.is-in-view .craving-regular-media-wrap {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--craving-offset, 0px) * -0.06), 0) scale(1);
+  transition-delay: 0.44s;
+}
+
+.craving-section.is-in-view .craving-seasonal-media-wrap {
+  opacity: 1;
+  transform: translate3d(0, calc(var(--craving-offset, 0px) * 0.06), 0) scale(1);
+  transition-delay: 0.58s;
+}
+
+/* Card Hover Elevation */
+.craving-zone-regular:hover .craving-regular-media-wrap {
+  transform: translate3d(0, calc(var(--craving-offset, 0px) * -0.06 - 8px), 0) scale(1.025);
+}
+
+.craving-zone-seasonal:hover .craving-seasonal-media-wrap {
+  transform: translate3d(0, calc(var(--craving-offset, 0px) * 0.06 - 8px), 0) scale(1.025);
+}
+
+.craving-zone-regular:hover .editorial-media-clip {
+  box-shadow: 0 28px 44px rgba(36, 21, 15, 0.14);
+}
+
+.craving-zone-seasonal:hover .editorial-media-clip {
+  box-shadow: 0 28px 44px rgba(227, 163, 53, 0.18);
+}
+
+/* Zone 2: Seasonal World - Burnt Saffron Ambient Field */
+.craving-zone-seasonal {
+  background-color: var(--surface-saffron-tint);
+  position: relative;
+}
+
+.craving-zone-seasonal:hover {
+  background-color: #F6EDE0;
+}
+
+.seasonal-seal {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px dashed var(--color-saffron);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  transform: rotate(-22deg) scale(0.85);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: opacity, transform;
+}
+
+.craving-section.is-in-view .seasonal-seal {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  transition-delay: 0.3s;
+}
+
+.craving-zone-seasonal:hover .seasonal-seal {
+  transform: rotate(14deg) scale(1.05);
+}
+
+.seal-text {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-saffron);
+  text-align: center;
+}
+
+.seasonal-dot-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-saffron);
+  display: inline-block;
+}
+
+.seasonal-note {
+  color: var(--color-saffron);
+  font-weight: 600;
+}
+
+.seasonal-title-text {
+  color: var(--color-cacao);
+}
+
+.seasonal-flavor-text {
+  color: #5E3E1C;
+}
+
+/* ==========================================================================
+   Shared Footers & Action Triggers
+   ========================================================================== */
+
+.craving-footer-action {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.5rem;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.craving-section.is-in-view .craving-footer-action {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.7s;
+}
+
+.craving-cta-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.craving-cta-text .arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.craving-zone:hover .craving-cta-text .arrow {
+  transform: translateX(6px);
+}
+
+.craving-zone-regular:hover .craving-cta-text {
+  color: var(--color-black-cherry);
+}
+
+.seasonal-cta-text {
+  color: #6E3F0A;
+}
+
+.craving-zone-seasonal:hover .seasonal-cta-text {
+  color: var(--color-saffron);
+}
+
+.seasonal-num {
+  color: var(--color-saffron);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .craving-container {
+    grid-template-columns: 1fr;
+  }
+
+  .craving-divider-marker {
+    display: none;
+  }
+
+  .craving-zone {
+    padding: 3rem var(--gutter-mobile);
+  }
+
+  .craving-zone-regular {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .craving-regular-media-wrap,
+  .craving-seasonal-media-wrap {
+    width: 260px;
+    align-self: flex-start;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .craving-section.is-in-view .craving-regular-media-wrap,
+  .craving-section.is-in-view .craving-seasonal-media-wrap {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .craving-tag-row,
+  .craving-title,
+  .craving-flavor-notes,
+  .craving-divider-marker,
+  .craving-regular-media-wrap,
+  .craving-seasonal-media-wrap,
+  .seasonal-seal,
+  .craving-footer-action {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

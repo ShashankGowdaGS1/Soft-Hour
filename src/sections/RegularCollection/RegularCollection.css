@@ -1,0 +1,844 @@
+/* ==========================================================================
+   Regular Collection Section — French Patisserie Atelier Repertoire
+   Architecture: Pinned Single-Stage Full-Viewport Experience (GSAP ScrollTrigger)
+   Features: In-Place Copy Transitions, Persistent Stationary Media Frame,
+             Functional Synchronous Progress Rail, Living Film on Hover
+   ========================================================================== */
+
+.regular-section {
+  position: relative;
+  background-color: var(--cream);
+  border-bottom: 1px solid var(--border-subtle);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Desktop Pinned Stage Architecture (>= 961px)
+   The entire section is pinned directly below the fixed navbar.
+   ========================================================================== */
+@media (min-width: 961px) {
+  .regular-section {
+    width: 100%;
+    height: calc(100svh - var(--header-height, 5.5rem));
+    min-height: 600px;
+    max-height: 940px;
+    padding: 2rem 0 2.25rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .regular-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .regular-stage {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 4.5rem;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+/* ==========================================================================
+   Header Elements (Stationary inside pinned section)
+   ========================================================================== */
+.regular-header {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.25rem;
+  flex-shrink: 0;
+}
+
+.regular-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.regular-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--espresso);
+  letter-spacing: -0.02em;
+}
+
+.ledger-batch-stamp {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--cocoa);
+  display: inline-block;
+}
+
+.mobile-header-count {
+  display: none;
+}
+
+/* ==========================================================================
+   Left Column: Fixed-Position Dessert Copy Stage
+   All 8 dessert texts occupy the exact same coordinate space.
+   ========================================================================== */
+.regular-copy-stage {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+}
+
+.copy-item-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(70px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.copy-item-layer.is-initial {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.copy-meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.copy-num-cell {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--biscuit);
+  letter-spacing: 0.12em;
+  flex-shrink: 0;
+}
+
+.copy-tag-cell {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cocoa);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.copy-fill-dotted {
+  flex: 1;
+  height: 1px;
+  border-bottom: 1px dotted var(--border-strong);
+  opacity: 0.35;
+  margin: 0 0.5rem;
+}
+
+.copy-price-cell {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--cocoa);
+  flex-shrink: 0;
+}
+
+.copy-name-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 4vw, 3.65rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--espresso);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.copy-flavor-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-black-cherry);
+  margin-bottom: 0.95rem;
+}
+
+.copy-flavor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-black-cherry);
+}
+
+.copy-desc-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.62;
+  color: rgba(36, 21, 15, 0.8);
+  max-width: 460px;
+}
+
+/* ==========================================================================
+   Right Column: Functional Progress Rail & Fixed Photographic Viewport
+   The media frame stays in ONE absolute stationary position on desktop.
+   ========================================================================== */
+.regular-canvas-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.regular-canvas-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cocoa);
+  opacity: 0.85;
+  padding: 0 0.25rem;
+}
+
+.regular-canvas-body {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+/* Functional Vertical Progress Rail */
+.regular-progress-rail {
+  position: relative;
+  width: 16px;
+  height: clamp(260px, 42vh, 390px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rail-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--border-subtle);
+  border-radius: 2px;
+}
+
+.rail-indicator {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 4px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: var(--color-black-cherry);
+  box-shadow: 0 0 10px rgba(90, 36, 48, 0.45);
+  will-change: transform;
+}
+
+.rail-ticks {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  pointer-events: none;
+}
+
+.rail-tick {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--biscuit);
+  transition: background-color 220ms ease, transform 220ms ease;
+}
+
+.rail-tick.is-active {
+  background-color: var(--color-black-cherry);
+  transform: scale(1.6);
+}
+
+/* Persistent Stationary Media Frame */
+.regular-canvas-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: clamp(330px, 48vh, 460px);
+  background-color: var(--whipped);
+  overflow: hidden;
+  border-radius: 0 88px 0 0;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 20px 42px -12px rgba(36, 21, 15, 0.12);
+  transition: box-shadow 0.4s ease;
+}
+
+.regular-canvas-frame:hover {
+  box-shadow: 0 28px 56px -10px rgba(36, 21, 15, 0.18);
+}
+
+/* Absolutely Stacked Media Layers */
+.regular-media-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(1.035) translateY(15px);
+  will-change: transform, opacity;
+}
+
+.regular-media-layer.is-initial {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.regular-canvas-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Living Dessert Film (covers image on hover) */
+.regular-canvas-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.regular-canvas-video.is-visible {
+  opacity: 1;
+}
+
+/* Minimal Film Status Overlay Badge */
+.regular-canvas-badge {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  background-color: rgba(33, 23, 20, 0.82);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-milk);
+  pointer-events: none;
+  user-select: none;
+}
+
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-bone);
+  transition: background-color var(--transition-fast);
+}
+
+.badge-dot.is-pulsing {
+  background-color: #E3A335;
+  box-shadow: 0 0 6px rgba(227, 163, 53, 0.9);
+  animation: filmDotPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes filmDotPulse {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* ==========================================================================
+   Mobile Architecture (<= 960px)
+   Pinned Single-Stage Atelier Repertoire with scrubbed scroll animation
+   Fitted specifically for portrait mobile screens with zero clipping.
+   ========================================================================== */
+.regular-mobile-flow {
+  display: none !important;
+}
+
+@media (max-width: 960px) {
+  .regular-section {
+    width: 100%;
+    height: calc(100svh - var(--header-height, 4.25rem));
+    min-height: 520px;
+    max-height: 100svh;
+    padding: 0.75rem 0 0.85rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+
+  .regular-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    gap: 0.5rem;
+  }
+
+  /* --------------------------------------------------------------------------
+     Mobile Header: Clean editorial stack, no awkward wrapping or bracket break
+     -------------------------------------------------------------------------- */
+  .regular-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-subtle);
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .regular-header-left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .regular-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.45rem;
+    margin-bottom: 0.1rem;
+    width: 100%;
+  }
+
+  .regular-meta-bar .editorial-num {
+    white-space: nowrap;
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--biscuit);
+    flex-shrink: 0;
+  }
+
+  .regular-meta-bar .crumb-cluster {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .regular-meta-bar .recipe-note {
+    white-space: nowrap;
+    font-size: 0.5625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cocoa);
+    opacity: 0.85;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+  }
+
+  .regular-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 6.2vw, 2.35rem);
+    font-weight: 400;
+    line-height: 1.02;
+    color: var(--espresso);
+    letter-spacing: -0.015em;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .regular-header-right {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px dashed var(--border-subtle);
+    padding-top: 0.35rem;
+    margin-top: 0.15rem;
+  }
+
+  .ledger-batch-stamp {
+    font-family: var(--font-sans);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-black-cherry, var(--cocoa));
+    white-space: normal;
+    line-height: 1.25;
+  }
+
+  .mobile-header-count {
+    display: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Mobile Stage: Single-column vertical stack with GSAP scroll transitions
+     -------------------------------------------------------------------------- */
+  .regular-stage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    justify-content: flex-start;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  /* Top Part: Canvas Stage (Photo/Video Frame + Progress Rail) */
+  .regular-canvas-stage {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  .regular-canvas-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.15rem;
+    font-size: 0.6875rem;
+  }
+
+  .regular-canvas-count {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--espresso);
+    letter-spacing: 0.1em;
+  }
+
+  .regular-canvas-tag {
+    font-family: var(--font-sans);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-black-cherry);
+    background: rgba(107, 30, 46, 0.08);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  .regular-canvas-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Hero-scale enlarged media canvas */
+  .regular-canvas-frame {
+    order: 1;
+    width: 100%;
+    height: clamp(260px, 40vh, 370px);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 8px 24px rgba(33, 23, 20, 0.08);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .regular-canvas-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .regular-canvas-badge {
+    bottom: 0.65rem;
+    left: 0.65rem;
+    padding: 0.25rem 0.55rem;
+    font-size: 0.5625rem;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  /* Horizontal Progress Rail beneath the media frame */
+  .regular-progress-rail {
+    order: 2;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.2rem 0 0.1rem;
+  }
+
+  .rail-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(33, 23, 20, 0.1);
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rail-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 12.5%;
+    background: var(--espresso);
+    border-radius: 999px;
+    will-change: transform;
+  }
+
+  .rail-ticks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2px;
+  }
+
+  .rail-tick {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(33, 23, 20, 0.2);
+    transition: background-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .rail-tick.is-active {
+    background: var(--color-black-cherry);
+    transform: scale(1.4);
+  }
+
+  /* Bottom Part: Copy Stage immediately beneath the progress rail */
+  .regular-copy-stage {
+    order: 2;
+    width: 100%;
+    height: clamp(125px, 19vh, 160px);
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.35rem;
+  }
+
+  .copy-item-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(35px);
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  .copy-item-layer.is-initial {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .copy-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .copy-num-cell {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--biscuit);
+    letter-spacing: 0.1em;
+  }
+
+  .copy-tag-cell {
+    font-size: 0.5625rem;
+    letter-spacing: 0.14em;
+    color: var(--cocoa);
+  }
+
+  .copy-fill-dotted {
+    flex: 1;
+    height: 1px;
+    border-bottom: 1px dotted var(--border-strong);
+    opacity: 0.35;
+    margin: 0 0.35rem;
+  }
+
+  .copy-price-cell {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--espresso);
+    font-family: var(--font-sans);
+  }
+
+  .copy-name-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 4.8vw, 1.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--espresso);
+    margin: 0 0 0.15rem 0;
+    letter-spacing: -0.015em;
+  }
+
+  .copy-flavor-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .copy-flavor-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--color-black-cherry);
+    flex-shrink: 0;
+  }
+
+  .copy-flavor-text {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-black-cherry);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .copy-desc-text {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: rgba(33, 23, 20, 0.75);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Extra Small Devices (<= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .regular-meta-bar {
+    gap: 0.3rem;
+  }
+
+  .regular-meta-bar .recipe-note {
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .regular-meta-bar .editorial-num {
+    font-size: 0.58rem;
+  }
+
+  .regular-title {
+    font-size: clamp(1.5rem, 5.8vw, 2.15rem);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Short Height Mobile Devices (<= 680px height)
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) and (max-height: 680px) {
+  .regular-section {
+    padding: 0.45rem 0 0.6rem;
+    min-height: 460px;
+  }
+
+  .regular-header {
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.3rem;
+    gap: 0.2rem;
+  }
+
+  .regular-title {
+    font-size: 1.45rem;
+  }
+
+  .regular-canvas-frame {
+    height: clamp(135px, 20vh, 175px);
+  }
+
+  .regular-copy-stage {
+    height: clamp(95px, 15vh, 120px);
+  }
+
+  .copy-name-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   Accessibility: Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .copy-item-layer,
+  .regular-media-layer {
+    transition: none !important;
+  }
+
+  .regular-canvas-video {
+    transition: none !important;
+  }
+
+  .badge-dot.is-pulsing {
+    animation: none !important;
+  }
+}
