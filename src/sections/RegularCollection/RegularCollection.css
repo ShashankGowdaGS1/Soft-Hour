@@ -298,7 +298,7 @@
   overflow: hidden;
   border-radius: 0 88px 0 0;
   outline: none;
-  cursor: pointer;
+  cursor: default;
   box-shadow: 0 20px 42px -12px rgba(36, 21, 15, 0.12);
   transition: box-shadow 0.4s ease;
 }
@@ -586,7 +586,7 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     box-shadow: 0 8px 24px rgba(33, 23, 20, 0.08);
-    cursor: pointer;
+    cursor: default;
     -webkit-tap-highlight-color: transparent;
   }
 

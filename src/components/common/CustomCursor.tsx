@@ -171,52 +171,7 @@ export default function CustomCursor() {
         return;
       }
 
-      // 2. Explicit custom cursor label attribute
-      const labelElFound = target.closest('[data-cursor], [data-cursor-text]');
-      if (labelElFound) {
-        const text =
-          labelElFound.getAttribute('data-cursor-text') ||
-          labelElFound.getAttribute('data-cursor') ||
-          '';
-        if (text) {
-          magneticPull = { x: 0, y: 0 };
-          applyMode('badge', text.toUpperCase());
-          return;
-        }
-      }
-
-      // 3. Auto-detected media and editorial card surfaces
-      if (target.closest('.seasonal-runway-media, .seasonal-video-btn, .regular-canvas-frame')) {
-        magneticPull = { x: 0, y: 0 };
-        applyMode('badge', 'FILM');
-        return;
-      }
-
-      if (target.closest('.craft-photo-card, .craft-mosaic-img, .act-media-wrapper')) {
-        magneticPull = { x: 0, y: 0 };
-        applyMode('badge', 'ARCHIVE');
-        return;
-      }
-
-      if (target.closest('.hero-visual-frame')) {
-        magneticPull = { x: 0, y: 0 };
-        applyMode('badge', 'TASTE');
-        return;
-      }
-
-      if (target.closest('.regular-art-frame, .regular-dessert-visual')) {
-        magneticPull = { x: 0, y: 0 };
-        applyMode('badge', 'EXPLORE');
-        return;
-      }
-
-      if (target.closest('.living-modal-close, .menu-drawer-close, .modal-backdrop')) {
-        magneticPull = { x: 0, y: 0 };
-        applyMode('badge', 'CLOSE');
-        return;
-      }
-
-      // 4. Interactive elements (links, buttons, pills, tags, rows)
+      // 2. Interactive elements (links, buttons, pills, tags, rows)
       const interactive = target.closest(
         'a, button, [role="button"], .editorial-link, .tag-item, .tab-btn, .counter-action-link, .provenance-row, [data-cursor-interactive]'
       );
@@ -238,7 +193,7 @@ export default function CustomCursor() {
         return;
       }
 
-      // 5. Default background / text
+      // 3. Default background / media / images / text
       magneticPull = { x: 0, y: 0 };
       applyMode('default');
     };
